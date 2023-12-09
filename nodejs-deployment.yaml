@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-tl
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nodejs-tl
+  template:
+    metadata:
+      labels:
+        app: nodejs-tl
+    spec:
+      containers:
+        - name: nodejs-tl
+          image: thijslintermans/nodejs-tl-milestone2:1.0
+          ports:
+            - containerPort: 3000
+          env:
+            - name: POSTGRES_HOST
+              value: postgres-service
+            - name: POSTGRES_DB
+              value: tldatabase
+            - name: POSTGRES_USER
+              value: tl
+            - name: POSTGRES_PASSWORD
+              value: tlpassword

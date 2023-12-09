@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-tl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-tl
+  template:
+    metadata:
+      labels:
+        app: postgres-tl
+    spec:
+      containers:
+        - name: postgres-tl
+          image: thijslintermans/postgresql-tl-milestone2:1.0
+          env:
+            - name: POSTGRES_DB
+              value: tldatabase
+            - name: POSTGRES_USER
+              value: tl
+            - name: POSTGRES_PASSWORD
+              value: tlpassword
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-data
+          emptyDir: {}

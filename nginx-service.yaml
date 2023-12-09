@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-tl
+spec:
+  selector:
+    app: nginx-tl
+  ports:
+    - protocol: TCP
+      port: 80
